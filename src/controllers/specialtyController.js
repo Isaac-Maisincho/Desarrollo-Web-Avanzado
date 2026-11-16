@@ -3,6 +3,7 @@ const {listSpecialtiesService} = require("../services/specialtyService");
 const {SpecialtyIdService} = require("../services/specialtyService");
 const {deleteSpecialtyService} = require("../services/specialtyService"); 
 const {updateSpecialtyService} = require("../services/specialtyService");  
+const {deleteByAreaService} = require("../services/specialtyService");
 
 const handlerError = (res,error)=>{
     if(error.name === "ValidationError"){
@@ -66,16 +67,25 @@ const updateSpecialty = async (req,res)=>{
         if(!specialty){
             return res.status(404).json({error:"Specialty no encontrada"});
         }
-        res.json(specialty);
+        res.json(specialty.toJSON({virtual:true}));
     }catch(error){
         handlerError(res,error);
     }
 };
 
+const deleteByArea = async (req,res)=>{
+    try{
+        const result = await deleteByAreaService(req.params.area);
+        res.json({message:`Se eliminaron ${result.deletedCount} specialties del area ${req.params.area}`});
+    }catch(error){
+        handlerError(res,error);
+    }
+}
 module.exports = {
     createSpecialty,
     listSpecialties,
     getSpecialtyById,
     deleteSpecialty,
     updateSpecialty,
+    deleteByArea,
 };

@@ -12,4 +12,6 @@ router.use("/admin", adminRouter);
 router.use("/reservations", reservations);
 router.use("/users", appointments);
 router.use("/specialties",specialties);
+
+
 module.exports = router;
