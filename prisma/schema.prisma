@@ -27,6 +27,8 @@ model Appointment {
   userId      Int
   timeBlock   TimeBlock @relation(fields: [timeBlockId], references: [id])
   timeBlockId Int
+  specialtyId String? //id de la especialidad 24 caracteres
+  @@index([specialtyId])
 }
 
 model TimeBlock {

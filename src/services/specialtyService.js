@@ -13,8 +13,11 @@ const createSpecialtyService = async (data)=>{
     return await Specialty.create(data);
 };
 
-const listSpecialtiesService = async ()=>{
-    return await Specialty.find();
+const listSpecialtiesService = async ({q,area})=>{
+    const filter = {};
+    if(q) filter.name = {$regex: q, $options: "i"};
+    if(area) filter.area = area;
+    return await Specialty.find(filter);
 }
 
 const SpecialtyIdService = async (id)=>{

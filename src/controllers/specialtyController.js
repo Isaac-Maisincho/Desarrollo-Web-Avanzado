@@ -30,7 +30,7 @@ const createSpecialty = async (req,res)=>{
 
 const listSpecialties = async (req,res)=>{
     try{
-        const specialties = await listSpecialtiesService(req.body);
+        const specialties = await listSpecialtiesService(req.query);
         res.json(specialties)
     }catch(error){
         handlerError(res,error);
