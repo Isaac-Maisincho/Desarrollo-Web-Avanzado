@@ -1,5 +1,6 @@
 // src/server.js
 const connectMongo = require("./db/mongo"); // Importación correcta sin llaves
+require("dotenv").config();
 const app = require("./app");
 
 const PORT = process.env.PORT || 3000;

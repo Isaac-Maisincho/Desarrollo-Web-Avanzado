@@ -1,11 +1,14 @@
+const specialty = require("../models/specialty");
 const reservationService = require("../services/reservationService");
 exports.createReservation = async (req, res) => {
   try {
-    const { date, timeBlockId } = req.body;
+    const { date, timeBlockId, specialtyId } = req.body;
     const reservation = await reservationService.createReservation({
       date,
       timeBlockId,
+      specialtyId,
       userId: req.user.id,
+
     });
     res.status(201).json(reservation);
   } catch (error) {
